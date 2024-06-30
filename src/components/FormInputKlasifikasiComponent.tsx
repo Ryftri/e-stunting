@@ -1,23 +1,14 @@
+import { DataBalita } from "@/types/balita";
 import { Card, Label, Datepicker, Select, TextInput, Button } from "flowbite-react";
-import { Dispatch, SetStateAction } from "react";
+import { ChangeEvent, Dispatch, SetStateAction } from "react";
 
 export default function FormInputKlasifikasiComponent ({
-    tanggalLahir,
-    handleDatePickerChange,
-    isKlasifikasi,
-    jenisKelamin,
-    setJenisKelamin,
-    setTinggiBadan,
-    tinggiBadan,
+    dataBalita,
+    handleChange,
     setOpenModal
 } : {
-    tanggalLahir: Date,
-    handleDatePickerChange: (date: SetStateAction<Date>) => void,
-    isKlasifikasi: boolean,
-    jenisKelamin: string,
-    setJenisKelamin: Dispatch<SetStateAction<string>>,
-    setTinggiBadan: Dispatch<SetStateAction<number>>,
-    tinggiBadan: number,
+    dataBalita: DataBalita,
+    handleChange: (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void,
     setOpenModal: Dispatch<SetStateAction<boolean>>
 }) {
     return (
@@ -29,13 +20,22 @@ export default function FormInputKlasifikasiComponent ({
                             <Label htmlFor="tanggal-lahir" value="Pilih Tanggal Lahir" />
                         </div>
                         <Datepicker
-                            value={tanggalLahir.toLocaleDateString('id', { day: 'numeric', month: 'long', year: 'numeric' })}
-                            onSelectedDateChanged={handleDatePickerChange}
+                            value={dataBalita.tanggalLahir.toLocaleDateString('id', { day: 'numeric', month: 'long', year: 'numeric' })}
+                            onSelectedDateChanged={date => {
+                                const mockEvent = {
+                                    target: {
+                                        name: 'tanggalLahir',
+                                        value: date,
+                                    } as unknown as HTMLInputElement,
+                                  } as ChangeEvent<HTMLInputElement>;
+                                  handleChange(mockEvent);
+                            }}
                             language="id"
+                            name="tanggalLahir"
                             title="Tanggal Lahir Balita"
                             labelTodayButton='Pilih'
                             className="w-full"
-                            disabled={isKlasifikasi}
+                            disabled={!(!dataBalita.hasilKlasifikasi)}
                         />
                     </div>
                     <div className="w-full min-[954px]:w-1/2">
@@ -44,10 +44,11 @@ export default function FormInputKlasifikasiComponent ({
                         </div>
                         <Select
                             id="jenis-kelamin"
-                            value={jenisKelamin}
-                            onChange={e => setJenisKelamin(e.target.value)}
+                            value={dataBalita.jenisKelamin}
+                            onChange={handleChange}
+                            name="jenisKelamin"
                             required
-                            disabled={isKlasifikasi}
+                            disabled={!(!dataBalita.hasilKlasifikasi)}
                             >
                             <option value="laki-laki">Laki-laki</option>
                             <option value="perempuan">Perempuan</option>
@@ -58,18 +59,19 @@ export default function FormInputKlasifikasiComponent ({
                             <Label htmlFor="tinggi-badan" value="Tinggi Badan Balita (cm)" />
                         </div>
                         <TextInput
-                            onChange={e => setTinggiBadan(parseFloat(e.currentTarget.value))}
+                            onChange={handleChange}
                             id="tinggi-badan"
                             type="number"
-                            value={tinggiBadan}
+                            name="tinggiBadan"
+                            value={dataBalita.tinggiBadan}
                             required
-                            disabled={isKlasifikasi}
+                            disabled={!(!dataBalita.hasilKlasifikasi)}
                             />
                     </div>
                     <Button
                         onClick={() => setOpenModal(true)}
                         className="py-2 px-4 mt-4 min-[954px]:mt-0"
-                        disabled={isKlasifikasi}
+                        disabled={!(!dataBalita.hasilKlasifikasi)}
                         >
                             Cek Klasifikasi
                     </Button>

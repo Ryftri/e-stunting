@@ -1,3 +1,4 @@
+import { DataBalita } from "@/types/balita";
 import { Button, List, Modal } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
 
@@ -11,17 +12,8 @@ export default function ModalKlasifikasiComponent (
         openModal: boolean,
         setOpenModal: Dispatch<SetStateAction<boolean>>,
         runKlasifikasi: () => Promise<void>,
-        dataBalita: {
-            umurBalita: number;
-            jenisKelamin: string;
-            tinggiBadan: number;
-            tanggalLahir: Date;
-        }
+        dataBalita: DataBalita
     }) {
-    const handleKlasifikasiClick = async () => {
-        setOpenModal(false);
-        await runKlasifikasi(); 
-    };
 
     return (
         <>
@@ -40,7 +32,7 @@ export default function ModalKlasifikasiComponent (
                     </div>
                     
                     <div className="flex flex-row justify-normal w-full space-x-4">
-                        <Button color="success" onClick={handleKlasifikasiClick}>Benar</Button>
+                        <Button color="success" onClick={async () => await runKlasifikasi()}>Benar</Button>
                         <Button color="failure" onClick={() => setOpenModal(false)}>
                             Kembali
                         </Button>

@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Navbar, Avatar } from "flowbite-react";
 import { usePathname } from 'next/navigation';
 
-export default function Header () {
+export default function HeaderComponent () {
 
     const pathname = usePathname()
 

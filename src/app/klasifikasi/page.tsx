@@ -1,69 +1,88 @@
 "use client"
 
-import { SetStateAction, useState } from 'react';
-import { Spinner } from "flowbite-react"
+import { ChangeEvent, SetStateAction, useState } from 'react';
+import { Alert, Spinner } from "flowbite-react"
 import * as tfjs from '@tensorflow/tfjs';
 import getTotalMonthsSince from '@/utils/getTotalMonthsSince';
 import ModalKlasifikasiComponent from '@/components/ModalKlasifikasiComponent';
 import useKlasifikasiModel from '@/utils/custom-hooks/useKlasifikasiModel';
 import HasilKlasifikasiComponent from '@/components/HasilKlasifikasiComponent';
 import FormInputKlasifikasiComponent from '@/components/FormInputKlasifikasiComponent';
+import { DataBalita } from '@/types/balita';
+import { HiInformationCircle } from 'react-icons/hi';
 
 export default function KlasifikasiPage () {
-    const [tanggalLahir, setTanggalLahir] = useState(new Date());
-    const [jenisKelamin, setJenisKelamin] = useState<string>("laki-laki");
-    const [tinggiBadan, setTinggiBadan] = useState<number>(0.0)
-    const [hasilKlasifikasi, setHasilKlasifikasi] = useState<string>("");
+    const [dataBalita, setDataBalita] = useState<DataBalita>({
+        tanggalLahir: new Date(),
+        jenisKelamin: "laki-laki",
+        tinggiBadan: 0.0,
+        totalBulan: 0.0,
+        hasilKlasifikasi: "",
+    });
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [openModal, setOpenModal] = useState(false);
     const [isError, setIsError] = useState<boolean>(false);
-    const [isKlasifikasi, setIsKlasifikasi] = useState<boolean>(false);
     const [error, setError] = useState<string>("");
 
     const { model, isLoadingModel } = useKlasifikasiModel();
 
-    const getDataBalita = {
-        umurBalita: getTotalMonthsSince(tanggalLahir.toLocaleDateString('id')),
-        jenisKelamin,
-        tinggiBadan,
-        tanggalLahir
-    };
+    const handleChange =<T extends HTMLInputElement | HTMLSelectElement> (event: ChangeEvent<T>) => {
+        const { name, value } = event.target;
 
-    const handleDatePickerChange = (date: SetStateAction<Date>) => {
-        setTanggalLahir(date);
-    };
+        setDataBalita(prevData => {
+            let newData = { ...dataBalita, [name]: value };
+
+            if(name === "tinggiBadan") {
+                newData.tinggiBadan = parseFloat(value ?? 0.0)
+            }
+
+            if(name === "tanggalLahir") {
+                newData.totalBulan = getTotalMonthsSince(newData.tanggalLahir.toLocaleDateString('id'))
+            }
+
+            return newData;
+        });
+    }
 
     const klasifikasiModel = async () => {
         try {
-            setIsKlasifikasi(true)
             setIsLoading(true);
-            const dataBalita = getDataBalita;
+            if(dataBalita.totalBulan >= 60) throw new Error(`Mohon maaf anak anda berumur lebih dari 60 bulan. Total umur anak anda ${dataBalita.totalBulan} bulan`)
             const jenisKelaminToNumber = dataBalita.jenisKelamin === 'laki-laki' ? 1 : 0
-        
-            const input_data = tfjs.tensor2d([[dataBalita.umurBalita, jenisKelaminToNumber, dataBalita.tinggiBadan]]);
-        
-            const mean: number[] = [30.241221547486266, 0.4949911182715743, 88.72335670691771];
-            const scale: number[] = [17.585110677253205, 0.49997491047434633, 17.282394105566333];
-        
+            const input_data = tfjs.tensor2d([[dataBalita.totalBulan, jenisKelaminToNumber, dataBalita.tinggiBadan]]);
+            const mean: number[] = [30.251764803587744, 0.4957021842039698, 88.72211969600622];
+            const scale: number[] = [17.597697382324316, 0.49998152843818483, 17.30571227642312];
             const input_data_scaled = input_data.sub(tfjs.tensor1d(mean)).div(tfjs.tensor1d(scale));
         
-            const class_mapping: { [key: number]: string } = {0: 'severely stunted', 1: 'stunted', 2: 'normal', 3: 'tinggi'};
+            const class_mapping: { [key: number]: string } = {0: 'Membutuhkan Perhatian Khusus', 1: 'Perlu Peningkatan Pertumbuhan', 2: 'Tumbuh Sebagaimana Mestinya', 3: 'Tumbuh Optimal'};
         
             const class_predict = (model?.predict(input_data_scaled) as tfjs.Tensor<tfjs.Rank>).argMax(-1).dataSync()[0]
-            setHasilKlasifikasi(class_mapping[class_predict])
+            setDataBalita(prevData => ({
+                ...prevData,
+                hasilKlasifikasi: class_mapping[class_predict]
+            }))
         } catch (error) {
             setIsError(true)
             console.log(error)
             setError(`${error}`)
-            setIsKlasifikasi(false)
+    
         } finally {
             setIsLoading(false)
+            setOpenModal(false)
         }
       };
 
     return (
         <> 
         <div className="container mx-1 p-1">
+            {isError ? (
+                <Alert className='my-5 mx-1' onDismiss={() => {
+                    setIsError(false)
+                    setError("")
+                }} color="failure" icon={HiInformationCircle}>
+                    {error}
+                </Alert>
+            ) : ""}
             {isLoadingModel ? (
                 <div className='flex items-center justify-center w-full h-full'>
                     <Spinner size="xl"/>
@@ -71,18 +90,13 @@ export default function KlasifikasiPage () {
             ) : (
                 <>
                     <FormInputKlasifikasiComponent
-                        tanggalLahir={tanggalLahir}
-                        handleDatePickerChange={handleDatePickerChange}
-                        isKlasifikasi={isKlasifikasi}
-                        jenisKelamin={jenisKelamin}
-                        setJenisKelamin={setJenisKelamin}
-                        setTinggiBadan={setTinggiBadan}
-                        tinggiBadan={tinggiBadan}
+                        dataBalita={dataBalita}
+                        handleChange={handleChange}
                         setOpenModal={setOpenModal}
                     />
 
                     <ModalKlasifikasiComponent 
-                        dataBalita={getDataBalita}
+                        dataBalita={dataBalita}
                         runKlasifikasi={klasifikasiModel}
                         openModal={openModal}
                         setOpenModal={setOpenModal}
@@ -94,14 +108,10 @@ export default function KlasifikasiPage () {
                                 <Spinner size="xl"/>
                             </div>
                         }
-                        {hasilKlasifikasi && 
+                        {dataBalita.hasilKlasifikasi && 
                             <HasilKlasifikasiComponent
-                                hasilKlasifikasi={hasilKlasifikasi}
-                                tinggiBadan={tinggiBadan}
-                                jenisKelamin={jenisKelamin}
-                                tanggalLahir={tanggalLahir}
-                                setHasilKlasifikasi={setHasilKlasifikasi}
-                                setIsKlasifikasi={setIsKlasifikasi}
+                                dataBalita={dataBalita}
+                                setDataBalita={setDataBalita}
                             />
                         }
                     </div>

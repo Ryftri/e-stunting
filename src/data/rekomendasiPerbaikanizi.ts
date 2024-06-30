@@ -1,5 +1,5 @@
 export const rekomendasiPerbaikanGizi: { [key: string]: { [key: string]: { [key: string]: string[] } } } = {
-    'severly stunted': {
+    'Membutuhkan Perhatian Khusus': {
         '0-6 bulan': {
             'Energi dan Protein': ['ASI eksklusif'],
             'Zat Besi': ['ASI'],
@@ -52,7 +52,7 @@ export const rekomendasiPerbaikanGizi: { [key: string]: { [key: string]: { [key:
             'Vitamin D': ['Paparan sinar matahari pagi', 'Susu']
         }
     },
-    'stunted': {
+    'Perlu Peningkatan Pertumbuhan': {
         '0-6 bulan': {
             'Energi dan Protein': ['ASI eksklusif'],
             'Zat Besi': ['ASI'],
@@ -105,7 +105,7 @@ export const rekomendasiPerbaikanGizi: { [key: string]: { [key: string]: { [key:
             'Vitamin D': ['Paparan sinar matahari pagi', 'Susu']
         }
     },
-    'normal': {
+    'Tumbuh Sebagaimana Mestinya': {
         '0-6 bulan': {
             'Energi dan Protein': ['ASI eksklusif'],
             'Zat Besi': ['ASI'],
@@ -158,7 +158,7 @@ export const rekomendasiPerbaikanGizi: { [key: string]: { [key: string]: { [key:
             'Vitamin D': ['Paparan sinar matahari pagi', 'Susu']
         }
     },
-    'tinggi': {
+    'Tumbuh Optimal': {
         '0-6 bulan': {
             'Energi dan Protein': ['ASI eksklusif'],
             'Zat Besi': ['ASI'],

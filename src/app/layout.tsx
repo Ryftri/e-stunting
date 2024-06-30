@@ -3,7 +3,8 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Roboto } from "next/font/google";
 import { ThemeModeScript } from "flowbite-react";
-import Header from "@/components/Header";
+import HeaderComponent from "@/components/HeaderComponent";
+import { FooterComponent } from "@/components/FooterComponent";
 
 const roboto = Roboto({
   subsets: ["latin"],
@@ -37,10 +38,11 @@ export default function RootLayout({
         <ThemeModeScript/>
       </head>
       <body className={`${roboto.className} `}>
-        <Header/>
+        <HeaderComponent/>
         <main className="flex min-h-screen flex-col items-center justify-between py-24 px-1">
           {children}
         </main>
+        <FooterComponent/>
       </body>
     </html>
   );
