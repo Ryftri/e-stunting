@@ -11,6 +11,8 @@ export default function FormInputKlasifikasiComponent ({
     handleChange: (event: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => void,
     setOpenModal: Dispatch<SetStateAction<boolean>>
 }) {
+    const today = new Date()
+    const fiveYearsAgo = new Date(new Date().setFullYear(today.getFullYear() - 5))
     return (
         <Card className="w-full max-w-[calc(100%-5px)] mx-auto p-4">
                 <h1 className="text-2xl font-bold text-center mb-4">Klasifikasi Status Gizi</h1>
@@ -30,10 +32,13 @@ export default function FormInputKlasifikasiComponent ({
                                   } as ChangeEvent<HTMLInputElement>;
                                   handleChange(mockEvent);
                             }}
+                            minDate={fiveYearsAgo}
+                            maxDate={today}
                             language="id"
                             name="tanggalLahir"
                             title="Tanggal Lahir Balita"
                             labelTodayButton='Pilih'
+                            labelClearButton="Tutup"
                             className="w-full"
                             disabled={!(!dataBalita.hasilKlasifikasi)}
                         />

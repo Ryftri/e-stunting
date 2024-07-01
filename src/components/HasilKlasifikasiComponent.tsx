@@ -1,5 +1,6 @@
 import { rekomendasiPerbaikanGizi } from "@/data/rekomendasiPerbaikanizi";
 import { DataBalita } from "@/types/balita";
+import checkRange from "@/utils/checkRange";
 import { generatePDF } from "@/utils/generatePDF";
 import getTotalMonthsSince from "@/utils/getTotalMonthsSince";
 import { Card, Tabs, List, Table, Button } from "flowbite-react";
@@ -14,16 +15,6 @@ export default function HasilKlasifikasiComponent ({
     dataBalita: DataBalita
     setDataBalita: Dispatch<SetStateAction<DataBalita>>,
 }) {
-    const jarakTotalBulan = [[0, 6], [6, 12], [12, 24], [24, 36], [36, 48], [48, 60]];
-
-    function checkRange(umurBalita: number) {
-        for (const [min, max] of jarakTotalBulan) {
-            if (umurBalita >= min && umurBalita < max) {
-            return `${min}-${max} bulan`;
-            }
-        }
-        return '48-60 bulan'
-    }
 
     return (
         <Card className="flex flex-col justify-center">
@@ -70,7 +61,7 @@ export default function HasilKlasifikasiComponent ({
                                     hasilKlasifikasi: ""
                                 }))
                             }} className="py-2 px-4 mt-4 min-[954px]:mt-0">Klasifikasi Lagi</Button>
-                            <Button onClick={generatePDF} color="purple" className="py-2 px-4 mt-4 min-[954px]:mt-0">Unduh PDF</Button>
+                            <Button onClick={() => generatePDF(dataBalita)} color="purple" className="py-2 px-4 mt-4 min-[954px]:mt-0">Unduh PDF</Button>
                         </Card>
     )
 }

@@ -1,6 +1,6 @@
 "use client"
 
-import { ChangeEvent, SetStateAction, useState } from 'react';
+import { ChangeEvent, useState } from 'react';
 import { Alert, Spinner } from "flowbite-react"
 import * as tfjs from '@tensorflow/tfjs';
 import getTotalMonthsSince from '@/utils/getTotalMonthsSince';
@@ -47,7 +47,8 @@ export default function KlasifikasiPage () {
     const klasifikasiModel = async () => {
         try {
             setIsLoading(true);
-            if(dataBalita.totalBulan >= 60) throw new Error(`Mohon maaf anak anda berumur lebih dari 60 bulan. Total umur anak anda ${dataBalita.totalBulan} bulan`)
+            console.log(dataBalita)
+            if(dataBalita.totalBulan >= 61) throw new Error(`Mohon maaf anak anda berumur lebih dari 60 bulan. Total umur anak anda ${dataBalita.totalBulan} bulan`)
             const jenisKelaminToNumber = dataBalita.jenisKelamin === 'laki-laki' ? 1 : 0
             const input_data = tfjs.tensor2d([[dataBalita.totalBulan, jenisKelaminToNumber, dataBalita.tinggiBadan]]);
             const mean: number[] = [30.251764803587744, 0.4957021842039698, 88.72211969600622];
