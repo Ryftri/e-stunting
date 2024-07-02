@@ -15,7 +15,7 @@ export default function PetunjukPage () {
                             <List.Item className="text-xl">Buka Google Chrome: Buka aplikasi Google Chrome di perangkat Anda.</List.Item>
                             <List.Item className="text-xl">Kunjungi Situs Web: Akses situs web aplikasi E-Stunting.</List.Item>
                             <List.Item className="text-xl">Klik Tombol Instal: Cari tombol Install {"(biasanya berbentuk tanda plus atau ikon aplikasi)"} di sebelah kanan address bar. Klik tombol tersebut.</List.Item>
-                            <List.Item className="text-xl">Konfirmasi Instalasi: Sebuah jendela pop-up akan muncul. Klik "Install" untuk mengonfirmasi.</List.Item>
+                            <List.Item className="text-xl">Konfirmasi Instalasi: Sebuah jendela pop-up akan muncul. Klik Install untuk mengonfirmasi.</List.Item>
                             <List.Item className="text-xl">Aplikasi Terpasang: Aplikasi akan terpasang di perangkat Anda dan dapat diakses dari layar utama atau daftar aplikasi.</List.Item>
                         </List>
                     </div>
