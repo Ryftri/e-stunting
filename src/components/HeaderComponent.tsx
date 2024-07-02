@@ -20,9 +20,8 @@ export default function HeaderComponent () {
                     <Navbar.Link active={pathname === "/"} as={Link} href="/">
                         Home
                     </Navbar.Link>
-                    <Navbar.Link active={pathname === "/about"} as={Link} href="/about">About</Navbar.Link>
+                    <Navbar.Link active={pathname === "/petunjuk"} as={Link} href="/petunjuk">Petunjuk</Navbar.Link>
                     <Navbar.Link active={pathname === "/klasifikasi"} as={Link} href="/klasifikasi">Klasifikasi</Navbar.Link>
-                    <Navbar.Link active={pathname === "/grafik-who"} as={Link} href="/grafik-who">Grafik WHO</Navbar.Link>
                 </Navbar.Collapse>
             </Navbar>           
         </header>

@@ -39,7 +39,7 @@ export default function RootLayout({
       </head>
       <body className={`${roboto.className} `}>
         <HeaderComponent/>
-        <main className="flex min-h-screen flex-col items-center justify-between py-24 px-1">
+        <main className="flex min-h-screen flex-col items-center justify-between py-24">
           {children}
         </main>
         <FooterComponent/>

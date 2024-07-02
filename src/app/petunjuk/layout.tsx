@@ -1,4 +1,4 @@
-export default function GrafikWHO ({
+export default function Petunjuk ({
     children,
   }: Readonly<{
     children: React.ReactNode;
