@@ -24,9 +24,9 @@ export default function PetunjukPage () {
                         <List ordered>
                             <List.Item className="text-xl">Buka Safari: Buka aplikasi Safari di perangkat Anda.</List.Item>
                             <List.Item className="text-xl">Kunjungi Situs Web: Akses situs web aplikasi E-Stunting.</List.Item>
-                            <List.Item className="text-xl">Klik Tombol Bagikan: Ketuk tombol "Share" (ikon kotak dengan panah ke atas).</List.Item>
+                            <List.Item className="text-xl">Klik Tombol Bagikan: Ketuk tombol "Share" {"(ikon kotak dengan panah ke atas)"}.</List.Item>
                             <List.Item className="text-xl">Pilih "Add to Home Screen": Gulir ke bawah dan pilih opsi "Add to Home Screen".</List.Item>
-                            <List.Item className="text-xl">Beri Nama Aplikasi: Beri nama aplikasi Anda (misalnya, "E-Stunting") dan ketuk "Add".</List.Item>
+                            <List.Item className="text-xl">Beri Nama Aplikasi: Beri nama aplikasi Anda {"(misalnya, E-Stunting)"} dan ketuk "Add".</List.Item>
                             <List.Item className="text-xl">Aplikasi Terpasang: Aplikasi akan muncul di layar utama Anda.</List.Item>
                         </List>
                     </div>
