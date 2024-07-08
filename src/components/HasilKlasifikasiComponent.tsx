@@ -45,9 +45,13 @@ export default function HasilKlasifikasiComponent ({
                                                     <Table.Cell>{sumber.map((item, index) => {
                                                         const lenght = sumber.length;
 
-                                                        if(index === lenght - 1) return `dan ${item}.`
+                                                        if(lenght > 1){
+                                                            if(index === lenght - 1) return `dan ${item}.`
 
-                                                        return `${item}, `
+                                                            return `${item}, `
+                                                        } else {
+                                                            return `${item}.`
+                                                        }
                                                     })}</Table.Cell>
                                                 </Table.Row>
                                             ))}
