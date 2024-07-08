@@ -29,7 +29,7 @@ export default function KlasifikasiPage () {
     const handleChange =<T extends HTMLInputElement | HTMLSelectElement> (event: ChangeEvent<T>) => {
         const { name, value } = event.target;
 
-        setDataBalita(prevData => {
+        setDataBalita(() => {
             let newData = { ...dataBalita, [name]: value };
 
             if(name === "tinggiBadan") {

@@ -2,10 +2,9 @@ import { rekomendasiPerbaikanGizi } from "@/data/rekomendasiPerbaikanizi";
 import { DataBalita } from "@/types/balita";
 import checkRange from "@/utils/checkRange";
 import { generatePDF } from "@/utils/generatePDF";
-import getTotalMonthsSince from "@/utils/getTotalMonthsSince";
 import { Card, Tabs, List, Table, Button } from "flowbite-react";
 import { Dispatch, SetStateAction } from "react";
-import { HiUserCircle, HiAdjustments, HiClipboardList } from "react-icons/hi";
+import { HiUserCircle } from "react-icons/hi";
 import { MdDashboard } from "react-icons/md";
 
 export default function HasilKlasifikasiComponent ({
