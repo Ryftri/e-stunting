@@ -9,7 +9,7 @@ export default function Home() {
       <section className="bg-center bg-no-repeat bg-[url('/icons/icon-512x512.png')] bg-gray-700 bg-blend-multiply w-full">
           <div className="px-4 mx-auto max-w-screen-xl text-center py-56">
               <h1 className="mb-4 text-4xl font-extrabold tracking-tight leading-none text-white md:text-5xl lg:text-6xl">Aplikasi E-Stunting</h1>
-              <p className="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Aplikasi ini dilengkapi dengan model kecerdasan buatan (Artificial Intelligence/AI) yang telah melalui proses pelatihan ekstensif dan mencapai tingkat akurasi 98%. Model AI ini dioptimalkan menggunakan metode <i>hyperparameter tuning</i> dengan teknik <i>grid search</i> untuk mengidentifikasi kombinasi hyperparameter optimal guna mencapai kinerja model yang unggul untuk menentukan klasifikasi stunting.</p>
+              <p className="mb-8 text-lg font-normal text-gray-300 lg:text-xl sm:px-16 lg:px-48">Aplikasi ini dilengkapi dengan model kecerdasan buatan (Artificial Intelligence/AI) yang telah melalui proses pelatihan ekstensif dan mencapai tingkat akurasi 98%. Model AI ini dioptimalkan menggunakan metode <i>hyperparameter tuning</i> untuk mengidentifikasi kombinasi hyperparameter optimal guna mencapai kinerja model yang unggul untuk menentukan klasifikasi stunting.</p>
           </div>
       </section>
       <section className="w-full">
