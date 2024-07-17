@@ -21,9 +21,11 @@ export default function ModalKlasifikasiComponent (
                 <Modal.Header>Cek Kembali</Modal.Header>
                 <Modal.Body>
                     <List>
-                        <List.Item>Tinggi Badan  : {dataBalita.tinggiBadan} cm</List.Item>
-                        <List.Item>Jenis Kelamin : {dataBalita.jenisKelamin}</List.Item>
-                        <List.Item>Tanggal Lahir  : {dataBalita.tanggalLahir.toLocaleDateString('id', { day: 'numeric', month: 'long', year: 'numeric' })}</List.Item>
+                        <List.Item>Nama Orang Tua   : {dataBalita.namaOrtu}</List.Item>
+                        <List.Item>Nama Balita      : {dataBalita.namaBalita} cm</List.Item>
+                        <List.Item>Tinggi Badan     : {dataBalita.tinggiBadan} cm</List.Item>
+                        <List.Item>Jenis Kelamin    : {dataBalita.jenisKelamin}</List.Item>
+                        <List.Item>Tanggal Lahir    : {dataBalita.tanggalLahir.toLocaleDateString('id', { day: 'numeric', month: 'long', year: 'numeric' })}</List.Item>
                     </List>
                 </Modal.Body>
                 <Modal.Footer className="flex flex-col">

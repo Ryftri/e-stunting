@@ -13,6 +13,8 @@ import { HiInformationCircle } from 'react-icons/hi';
 
 export default function KlasifikasiPage () {
     const [dataBalita, setDataBalita] = useState<DataBalita>({
+        namaOrtu: "",
+        namaBalita: "",
         tanggalLahir: new Date(),
         jenisKelamin: "laki-laki",
         tinggiBadan: 0.0,

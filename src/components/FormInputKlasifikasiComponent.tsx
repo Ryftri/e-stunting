@@ -19,6 +19,34 @@ export default function FormInputKlasifikasiComponent ({
                 <form className="flex flex-col min-[954px]:flex-row min-[954px]:gap-4">
                     <div className="w-full min-[954px]:w-1/2">
                         <div className="mb-2 block">
+                            <Label htmlFor="nama-ortu" value="Nama Orang Tua" />
+                        </div>
+                        <TextInput
+                            onChange={handleChange}
+                            id="nama-ortu"
+                            type="string"
+                            name="namaOrtu"
+                            value={dataBalita.namaOrtu}
+                            required
+                            disabled={!(!dataBalita.hasilKlasifikasi)}
+                            />
+                    </div>
+                    <div className="w-full min-[954px]:w-1/2">
+                        <div className="mb-2 block">
+                            <Label htmlFor="nama-balita" value="Nama Balita" />
+                        </div>
+                        <TextInput
+                            onChange={handleChange}
+                            id="nama-balita"
+                            type="string"
+                            name="namaBalita"
+                            value={dataBalita.namaBalita}
+                            required
+                            disabled={!(!dataBalita.hasilKlasifikasi)}
+                            />
+                    </div>
+                    <div className="w-full min-[954px]:w-1/2">
+                        <div className="mb-2 block">
                             <Label htmlFor="tanggal-lahir" value="Pilih Tanggal Lahir" />
                         </div>
                         <Datepicker

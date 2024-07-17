@@ -30,10 +30,12 @@ export function docDefinition(dataBalita: DataBalita): TDocumentDefinitions {
                 layout: 'noBorders',
                 table: {
                     body: [
-                        ['Tanggal Lahir', ' : ', `${dataBalita.tanggalLahir.toLocaleDateString('id-ID', options)}`],
-                        ['Jenis Kelamin', ' : ', `${dataBalita.jenisKelamin}`],
-                        ['Tinggi Badan', ' : ', `${dataBalita.tinggiBadan} cm`],
-                        ['Umur (bulan)', ' : ', `${dataBalita.totalBulan} bulan`],
+                        ['Nama Orang Tua', ' : ', `${dataBalita.namaOrtu}`],
+                        ['Nama Balita   ', ' : ', `${dataBalita.namaBalita}`],
+                        ['Tanggal Lahir ', ' : ', `${dataBalita.tanggalLahir.toLocaleDateString('id-ID', options)}`],
+                        ['Jenis Kelamin ', ' : ', `${dataBalita.jenisKelamin}`],
+                        ['Tinggi Badan  ', ' : ', `${dataBalita.tinggiBadan} cm`],
+                        ['Umur (bulan)  ', ' : ', `${dataBalita.totalBulan} bulan`],
                         [{ text: 'Hasil Klasifikasi', style: 'boldText' }, { text: ' : ', style: 'boldText' }, { text: `${dataBalita.hasilKlasifikasi}`, style: getStyleByClassification(dataBalita.hasilKlasifikasi) }],
                     ],
                 },

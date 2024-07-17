@@ -25,9 +25,11 @@ export default function HasilKlasifikasiComponent ({
                             <Tabs>
                                 <Tabs.Item active title="Data Balita" icon={HiUserCircle}>
                                     <List>
-                                        <List.Item>Tinggi Badan  : {dataBalita.tinggiBadan} cm</List.Item>
-                                        <List.Item>Jenis Kelamin : {dataBalita.jenisKelamin}</List.Item>
-                                        <List.Item>Umur (Bulan)  : {dataBalita.totalBulan} Bulan</List.Item>
+                                        <List.Item>Nama Orang Tua : {dataBalita.namaOrtu}</List.Item>
+                                        <List.Item>Nama Balita    : {dataBalita.namaBalita}</List.Item>
+                                        <List.Item>Tinggi Badan   : {dataBalita.tinggiBadan} cm</List.Item>
+                                        <List.Item>Jenis Kelamin  : {dataBalita.jenisKelamin}</List.Item>
+                                        <List.Item>Umur (Bulan)   : {dataBalita.totalBulan} Bulan</List.Item>
                                         <List.Item>Tanggal Lahir  : {dataBalita.tanggalLahir.toLocaleDateString('id', { day: 'numeric', month: 'long', year: 'numeric' })}</List.Item>
                                     </List>
                                 </Tabs.Item>
