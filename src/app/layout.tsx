@@ -36,6 +36,7 @@ export default function RootLayout({
     <html lang="en">
       <head>
         <ThemeModeScript/>
+        <meta name="dicoding:email" content="rayhanzulfitri@gmail.com"/>
       </head>
       <body className={`${roboto.className} `}>
         <HeaderComponent/>
