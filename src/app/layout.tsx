@@ -37,6 +37,7 @@ export default function RootLayout({
       <head>
         <ThemeModeScript/>
         <meta name="dicoding:email" content="rayhanzulfitri@gmail.com"/>
+        <meta name="robots" content="index, follow" />
       </head>
       <body className={`${roboto.className} `}>
         <HeaderComponent/>
