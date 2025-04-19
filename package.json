@@ -6,8 +6,8 @@
     "dev": "next dev",
     "obfuscate-build": "next-css-obfuscator",
     "build": "next build && npm run obfuscate-build",
-    "start": "next start",
-    "lint": "next lint"
+    "start": "next start -p 9001",
+    "lint": "next lint -p 9001"
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^10.2.7",
